@@ -28,5 +28,9 @@ nconv is a simpile string convertor, it does:
 
 Yes, build is boring, just get a copy of prebuild binary from the [download area][2].
 
+## TODO
+
+1. Add to rock repos?
+
 [1]: http://code.google.com/p/luaforwindows/downloads/list
 [2]: https://bitbucket.org/xpol/nconv/downloads
