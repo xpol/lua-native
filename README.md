@@ -24,4 +24,9 @@ nconv is a simpile string convertor, it does:
 3. Build the nconv.dll, and copy to `$(LUA_DEV)\clibs`.
 4. Run the `test.lua` for test.
 
+## Binary
+
+Yes, build is boring, just get a copy of prebuild binary from the [download area][2].
+
 [1]: http://code.google.com/p/luaforwindows/downloads/list
+[2]: https://bitbucket.org/xpol/nconv/downloads
