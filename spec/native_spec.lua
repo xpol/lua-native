@@ -1,8 +1,17 @@
+local native = require('native')
+
+local function readline(filename)
+  local f = io.open(filename)
+  local ln = f:read('*l')
+  f:close()
+  return ln
+end
+
 describe('native', function()
-  local native = require('native')
-  describe('.decode(.encode())', function()
-    it('encode UTF-8 string in to native encoding', function()
-      assert.are.equal('这是一个UTF8字符串', native.decode(native.encode('这是一个UTF8字符串')))
+  describe('.encode() and .decode()', function()
+    it('convert between UTF-8 string and native encoding', function()
+      local utf8 = readline('spec/data/utf-8')
+      assert.are.equal(utf8, native.decode(native.encode(utf8)))
     end)
   end)
 end)

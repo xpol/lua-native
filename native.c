@@ -20,12 +20,7 @@ static int convert( lua_State * L, UINT decode, UINT encode )
 	const char* src = luaL_checklstring(L, 1, &srcsz);
 	wchar_t* w = malloc(sizeof(*w) * srcsz*2);
 	char* dst = malloc(sizeof(*dst) * srcsz*2);
-	int bom = (decode == CP_UTF8)
-		&& src[0] == '\xEF'
-		&& src[1] == '\xBB'
-		&& src[2] == '\xBF';
-	int bomsz = bom ? 3 : 0;
-	int wsz = MultiByteToWideChar(decode, 0, src+bomsz, srcsz-bomsz, w, srcsz*2);
+	int wsz = MultiByteToWideChar(decode, 0, src, srcsz, w, srcsz*2);
 	int dstsz = WideCharToMultiByte(encode, 0, w, wsz, dst, srcsz*2, 0, 0);
 	lua_pushlstring(L, dst, dstsz);
   free(dst);
