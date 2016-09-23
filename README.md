@@ -1,20 +1,38 @@
 ## About
 
-lua-iconv is hard to upand running, so roll my own!
+Have trouble with printing UTF-8 stings or saving file with UTF-8 names on Windows?
 
-nconv is a simpile string convertor, it does:
+lua-native is for you:
 
-`nconv.native()` converts from UTF-8 to system default encoding.
-	
-	local mbcs = nconv.native(utf8string)
-	print(mbcs) -- should OK in console...
+`native.encode()` converts from UTF-8 string to system current encoding on Windows.
 
-`nconv.utf8()` converts from system default encoding to UTF-8.
-	
-	local f = io.open('utf8')
-	local utf8string = nconv.native(mbcs)
-	f:write(utf8string) -- you'v got utf-8 content
-	f:close()
+On other system (Mac/Linux...) it just return the 1st argument.
+
+```lua
+local native = require('native')
+local mbcs = native.encode(utf8string)
+print(mbcs) -- prints correctly in Windows/Mac/Linux... console...
+```
+
+`native.decode()` converts from system default encoding to UTF-8 on Windows.
+
+On other system (Mac/Linux...) it just return the 1st argument.
+
+```lua
+local native = require('native')
+local lfs = require('lfs')
+
+function attrdir(utf8_path)
+	local native_path = native.encode(utf8_path)
+	local utf8_filenames = {}
+  for file in lfs.dir(native_path) do
+      if file ~= "." and file ~= ".." then
+          utf8_filenames[#utf8_filenames+1] = native.decode(file)
+      end
+  end
+	return utf8_filenames
+end
+```
 
 ## Build
 
