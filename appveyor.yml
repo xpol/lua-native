@@ -22,4 +22,5 @@ before_test:
 - luarocks install busted
 
 test_script:
+- chcp 936
 - busted
