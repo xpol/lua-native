@@ -1,4 +1,3 @@
---luacheck: ignore describe it setup teardown
 describe('native', function()
   local native = require('native')
   describe('.decode(.encode())', function()
