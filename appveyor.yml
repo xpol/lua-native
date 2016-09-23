@@ -14,7 +14,6 @@ install:
 - appveyor DownloadFile https://dl.bintray.com/xpol/luavm/LuaVM-0.2.0-vs2015-x64.exe -FileName LuaVM.exe
 - LuaVM.exe /verysilent /dir=C:\luavm
 - call C:\luavm\luavm\luavm.cmd use %LUA%
-- type C:\luavm\luavm\versions\%LUA%\luarocks.bat
 
 build_script:
 - luarocks make
